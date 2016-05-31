@@ -36,6 +36,7 @@ OpenResty通过汇聚各种设计精良的 Nginx 模块（主要由 OpenResty �
 openresty和tengine默认已经集成了lua的功能，安装过程比较方便。
 
 1. openresty的安装
+
 ```shell
 tar xzvf ngx_openresty-VERSION.tar.gz
 cd ngx_openresty-VERSION/
