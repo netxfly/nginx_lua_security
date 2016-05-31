@@ -43,7 +43,6 @@ cd ngx_openresty-VERSION/
 gmake
 gmake install
 ```
-
 1. tengine的安装
 
 ```shell
