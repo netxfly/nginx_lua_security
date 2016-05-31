@@ -43,6 +43,7 @@ cd ngx_openresty-VERSION/
 gmake
 gmake install
 ```
+
 1. tengine的安装
 ```shell
 wget http://tengine.taobao.org/download/tengine-2.1.2.tar.gz
