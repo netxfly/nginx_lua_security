@@ -44,7 +44,7 @@ gmake
 gmake install
 ```
 
-1. tengine的安装
+2. tengine的安装
 ```shell
 wget http://tengine.taobao.org/download/tengine-2.1.2.tar.gz
 tar -zxvf tengine-2.1.2.tar.gz
@@ -122,6 +122,7 @@ return _M
 nginx有11个处理阶段，如下图所示：
 ![](./images/000.png)
 一般我们在开发过程中常用到的阶段如下：
+
 1. set_by_lua*: 流程分之处理判断变量初始化
 1. rewrite_by_lua*: 转发、重定向、缓存等功能(例如特定请求代理到外网)
 1. access_by_lua*: IP准入、接口权限等情况集中处理(例如配合iptable完成简单防火墙)
@@ -129,6 +130,7 @@ nginx有11个处理阶段，如下图所示：
 1. header_filter_by_lua*: 应答HTTP过滤处理(例如添加头部信息)
 1. body_filter_by_lua*: 应答BODY过滤处理(例如完成应答内容统一成大写)
 1. log_by_lua*: 回话完成后本地异步完成日志记录(日志可以记录在本地，还可以同步到其他机器)
+
 一般情况下，我们使用content阶段即可，以下的例子为把content_by_lua放到server段的/test/ location下
 ```shell
 1     location /test/ {
