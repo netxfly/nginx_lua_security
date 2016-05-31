@@ -36,16 +36,15 @@ OpenResty通过汇聚各种设计精良的 Nginx 模块（主要由 OpenResty �
 openresty和tengine默认已经集成了lua的功能，安装过程比较方便。
 
 1. openresty的安装
-```shell
+```
 tar xzvf ngx_openresty-VERSION.tar.gz
 cd ngx_openresty-VERSION/
 ./configure
 gmake
 gmake install
 ```
-
-2. tengine的安装
-```shell
+1. tengine的安装
+```
 wget http://tengine.taobao.org/download/tengine-2.1.2.tar.gz
 tar -zxvf tengine-2.1.2.tar.gz
 cd tengine-2.1.2
@@ -181,6 +180,7 @@ access_by_lua 'cmd.sniff() ';
 
 最佳的做法是放到目标站点的关键的location中，比如/login、/admin等，需要注意的是lua-resty-http是基于cosocket实现的，所以不能放在以下几个阶段
 set_by_lua*, log_by_lua*, header_filter_by_lua*, body_filter_by_lua。
+
 如果只想记录正确的密码，过滤掉错误的，就需要在header_filter_by_lua或body_filter_by_lua阶段，通过服务器返回的值来判断用户post提交的密码是否正确，这个时候如果想提交到服务器中的话，就不能使用lua-resty-http了，但是可以通过ngx.timer.at 以异步的方式提交。
 另外也可以使用第三方的模块lua-requests在header_filter_by_lua或body_filter_by_lua阶段提交数据，利用luarocks为openresty安装lua-requests的过程如下：
 
@@ -220,6 +220,7 @@ location ~* ^/ {
 
 ### Lua代码加密及隐藏
 ### lua加载代码隐藏
+
 毕竟光明正大地在nginx.conf中加入了执行lua的代码后非常容易被发现，攻击者可以用include指令将以下代码改得隐蔽一些。
 
 ```shell
@@ -238,8 +239,10 @@ http {
   include       mime.types;
 ```
 ### lua代码加密
+
 即便是把lua加载的配置代码放在隐蔽的地方了，但是还在存在被找到的风险的，找到后如果是明文的lua代码，那行踪将暴露的一览无余，至少将lua代码加密一下。
 openresty使用的是luajit，luajit提供了一个luajit -b参数，可以将代码编译为字节码，这样就不容易被看到明文代码了。
+
 使用方式如下图所示（openresty的luajit的默认路径为`/usr/local/openresty/luajit/bin/luajit`），用编译后的lua字节码替换掉明文的文件即可。
 ！[](./imgages/005.png)
 
