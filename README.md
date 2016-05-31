@@ -244,7 +244,7 @@ http {
 openresty使用的是luajit，luajit提供了一个luajit -b参数，可以将代码编译为字节码，这样就不容易被看到明文代码了。
 
 使用方式如下图所示（openresty的luajit的默认路径为`/usr/local/openresty/luajit/bin/luajit`），用编译后的lua字节码替换掉明文的文件即可。
-！[](./images/005.png)
+![](./images/005.png)
 
 ### 总结
 拿到目标主机的root权限后，只留一个只有web容器的nginx+lua后门显然不是最佳的选择，本文只是提供一种可能的思路，测试代码的github地址为：https://github.com/netxfly/nginx_lua_security
